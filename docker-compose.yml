@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: javier
+      POSTGRES_PASSWORD: administrador@
+      POSTGRES_DB: helio
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker-config/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U javier -d helio" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:

@@ -3,5 +3,5 @@ package com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.reposito
 import com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface QueryRepository extends JpaRepository<UsuarioEntity, Long> {
+public interface QueryUsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 }

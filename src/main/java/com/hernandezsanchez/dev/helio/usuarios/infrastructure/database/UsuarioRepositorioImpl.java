@@ -4,7 +4,7 @@ import com.hernandezsanchez.dev.helio.usuarios.domain.entity.Usuario;
 import com.hernandezsanchez.dev.helio.usuarios.domain.port.UsuarioRepositorio;
 import com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.entity.UsuarioEntity;
 import com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.mapper.UsuarioEntityMapper;
-import com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.repository.QueryRepository;
+import com.hernandezsanchez.dev.helio.usuarios.infrastructure.database.repository.QueryUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 
     private final UsuarioEntityMapper usuarioEntityMapper;
 
-    private final QueryRepository repository;
+    private final QueryUsuarioRepository repository;
 
     @Override
     public Usuario upsert(Usuario usuario) {

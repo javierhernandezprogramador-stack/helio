@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 @Slf4j
@@ -40,7 +42,7 @@ public class TareaRepositorioImpl implements TareaRepositorio {
     @Override
     public PaginacionResultado<Tarea> obtenerTodos(PaginacionQuery paginacionQuery) {
 
-        log.info("Iniciando obteniendo todos en repositorio");
+        log.info("Iniciando obtener tareas en repositorio");
 
         PageRequest pageRequest = PageRequest.of(
                 paginacionQuery.getPagina(),
@@ -58,8 +60,26 @@ public class TareaRepositorioImpl implements TareaRepositorio {
                 page.getTotalElements()
         );
 
-        log.info("Finalizadon de obtener todos en repositorio");
+        log.info("Finalizando obtener tareas en repositorio");
 
         return paginacionResultado;
     }
+
+    @Override
+    public Optional<Tarea> porId(Long id) {
+
+        log.info("Acceso a buscar tareas por id");
+
+        return repository.findById(id).map(tareaEntityMapper::mapToTarea);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        Optional<Tarea> optionalTarea = porId(id);
+
+        TareaEntity tareaEntity = tareaEntityMapper.mapToTareaEntity(optionalTarea.get());
+
+        repository.delete(tareaEntity);
+    }
+
 }

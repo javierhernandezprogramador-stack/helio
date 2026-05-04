@@ -5,10 +5,14 @@ import com.hernandezsanchez.dev.helio.common.domain.PaginacionQuery;
 import com.hernandezsanchez.dev.helio.common.domain.PaginacionResultado;
 import com.hernandezsanchez.dev.helio.tareas.application.command.crear.CrearTareaRequest;
 import com.hernandezsanchez.dev.helio.tareas.application.command.crear.CrearTareaResponse;
+import com.hernandezsanchez.dev.helio.tareas.application.command.eliminar.EliminarTareaRequest;
+import com.hernandezsanchez.dev.helio.tareas.application.command.modificar.ModificarTareaRequest;
+import com.hernandezsanchez.dev.helio.tareas.application.command.modificar.ModificarTareaResponse;
 import com.hernandezsanchez.dev.helio.tareas.application.query.obtenerTareas.ObtenerTareasRequest;
 import com.hernandezsanchez.dev.helio.tareas.application.query.obtenerTareas.ObtenerTareasResponse;
 import com.hernandezsanchez.dev.helio.tareas.domain.entity.Tarea;
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.CrearTareaDto;
+import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.ModificarTareaDto;
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.TareaDto;
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.mapper.TareaMapper;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +36,7 @@ public class TareaController implements TareaAPI{
     @PostMapping
     public ResponseEntity<Void> guardar(@RequestBody CrearTareaDto crearTareaDto) {
 
-        log.info("Iniciando petición para guardar");
+        log.info("Iniciando petición para guardar tarea");
 
         CrearTareaRequest request = tareaMapper.mapToCrearTareaRequest(crearTareaDto);
 
@@ -40,7 +44,7 @@ public class TareaController implements TareaAPI{
 
         Tarea tarea = response.getTareaPaginado();
 
-        log.info("Finalizando petición para guardar");
+        log.info("Finalizando petición para guardar tarea");
 
         return ResponseEntity.created(URI.create("/api/v1/tareas/".concat(tarea.getId().toString()))).build();
     }
@@ -53,7 +57,7 @@ public class TareaController implements TareaAPI{
             @RequestParam(defaultValue = "asc") String direccion
     ) {
 
-        log.info("Iniciando petición para listar");
+        log.info("Iniciando petición para listar tareas");
 
         PaginacionQuery paginacionQuery = new PaginacionQuery(pagina, cantidad, ordenarPor, direccion);
 
@@ -71,8 +75,40 @@ public class TareaController implements TareaAPI{
                 tareasPaginacion.getTotalElementos()
         );
 
-        log.info("Finalizando petición para listar");
+        log.info("Finalizando petición para listar tareas");
 
         return ResponseEntity.ok(resultado);
+    }
+
+    @PutMapping
+    @Override
+    public ResponseEntity<Void> modificar(ModificarTareaDto modificarTareaDto) {
+
+        log.info("Iniciando petición modificar tarea");
+
+        ModificarTareaRequest request = tareaMapper.mapToModificarTareaRequest(modificarTareaDto);
+
+        ModificarTareaResponse response = mediator.dispatch(request);
+
+        Tarea tarea = response.getTareaPaginado();
+
+        log.info("Finalizando petición modificar tarea");
+
+        return ResponseEntity.created(URI.create("/api/v1/tareas/".concat(tarea.getId().toString()))).build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Override
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+
+        log.info("Iniciando petición para eliminar tarea");
+
+        EliminarTareaRequest request = new EliminarTareaRequest(id);
+
+        mediator.dispatchAsync(request);
+
+        log.info("Finalizando petición para eliminar tarea");
+
+        return ResponseEntity.accepted().build();
     }
 }

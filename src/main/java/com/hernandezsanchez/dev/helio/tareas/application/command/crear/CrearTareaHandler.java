@@ -24,6 +24,10 @@ public class CrearTareaHandler implements RequestHandler<CrearTareaRequest, Crea
                 .estado(request.getEstado())
                 .build();
 
+        if(!tareaRepositorio.porId(tarea.getId()).isPresent()) {
+            return null;
+        }
+
         Tarea respuesta = tareaRepositorio.upsert(tarea);
 
         log.info("Finalizando almacenamiento de tarea en servicio");

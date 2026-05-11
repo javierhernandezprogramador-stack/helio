@@ -1,7 +1,10 @@
 package com.hernandezsanchez.dev.helio.tareas.infrastructure.database.entity;
 
+import com.hernandezsanchez.dev.helio.subTareas.infrastructure.database.entity.SubTareaEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tareas")
@@ -14,4 +17,7 @@ public class TareaEntity {
     private Long id;
     private String nombre;
     private int estado;
+
+    @OneToMany(mappedBy = "tareaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubTareaEntity> subTareaEntities;
 }

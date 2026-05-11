@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Configurar servidor de correo",
+    "estado": 1
+  },
+  {
+    "nombre": "Optimizar consultas SQL",
+    "estado": 0
+  },
+  {
+    "nombre": "Actualizar dependencias de Maven",
+    "estado": 1
+  },
+  {
+    "nombre": "Implementar seguridad JWT",
+    "estado": 0
+  },
+  {
+    "nombre": "Redactar documentación técnica",
+    "estado": 1
+  }
+]

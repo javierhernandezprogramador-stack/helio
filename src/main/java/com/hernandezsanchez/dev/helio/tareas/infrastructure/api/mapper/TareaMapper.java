@@ -7,6 +7,7 @@ import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.CrearTareaDt
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.ModificarTareaDto;
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.api.dto.TareaDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
@@ -18,4 +19,7 @@ public interface TareaMapper {
     ModificarTareaRequest mapToModificarTareaRequest(ModificarTareaDto modificarTareaDto);
 
     TareaDto mapToTareaDto(Tarea tarea);
+
+    @Mapping(target = "subTareas", ignore = true)
+    Tarea mapToTarea(TareaDto tareaDto);
 }

@@ -9,6 +9,9 @@ import com.hernandezsanchez.dev.helio.tareas.infrastructure.database.mapper.Tare
 import com.hernandezsanchez.dev.helio.tareas.infrastructure.database.repository.QueryTareaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,6 +28,7 @@ public class TareaRepositorioImpl implements TareaRepositorio {
 
     private final QueryTareaRepository repository;
 
+    @CachePut(value = "tareas", key = "#tarea.id")
     @Override
     public Tarea upsert(Tarea tarea) {
 
@@ -65,6 +69,7 @@ public class TareaRepositorioImpl implements TareaRepositorio {
         return paginacionResultado;
     }
 
+    @Cacheable(value = "tareas", key = "#id")
     @Override
     public Optional<Tarea> porId(Long id) {
 
@@ -73,6 +78,7 @@ public class TareaRepositorioImpl implements TareaRepositorio {
         return repository.findById(id).map(tareaEntityMapper::mapToTarea);
     }
 
+    @CacheEvict(value = "tareas", key = "#id")
     @Override
     public void eliminar(Long id) {
         Optional<Tarea> optionalTarea = porId(id);

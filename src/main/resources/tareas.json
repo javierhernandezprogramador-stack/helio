@@ -1,22 +1,42 @@
 [
   {
-    "nombre": "Configurar servidor de correo",
+    "nombre": "Implementar módulo de autenticación",
+    "descripcion": "Desarrollar el sistema de inicio de sesión y registro de usuarios.",
+    "prioridad": 1,
+    "fechaInicio": "2026-05-15T09:00:00",
+    "fechaFinal": "2026-05-20T18:00:00",
     "estado": 1
   },
   {
-    "nombre": "Optimizar consultas SQL",
+    "nombre": "Diseñar interfaz de tareas",
+    "descripcion": "Crear las vistas principales para la gestión de tareas y subtareas.",
+    "prioridad": 2,
+    "fechaInicio": "2026-05-16T08:30:00",
+    "fechaFinal": "2026-05-22T17:00:00",
     "estado": 0
   },
   {
-    "nombre": "Actualizar dependencias de Maven",
+    "nombre": "Configurar base de datos",
+    "descripcion": "Definir tablas, relaciones y migraciones necesarias del proyecto.",
+    "prioridad": 1,
+    "fechaInicio": "2026-05-14T10:00:00",
+    "fechaFinal": "2026-05-18T15:30:00",
     "estado": 1
   },
   {
-    "nombre": "Implementar seguridad JWT",
+    "nombre": "Implementar paginación",
+    "descripcion": "Agregar soporte de paginación en el listado de tareas.",
+    "prioridad": 3,
+    "fechaInicio": "2026-05-17T11:00:00",
+    "fechaFinal": "2026-05-19T16:00:00",
     "estado": 0
   },
   {
-    "nombre": "Redactar documentación técnica",
-    "estado": 1
+    "nombre": "Generar reportes Excel",
+    "descripcion": "Exportar tareas y documentos a archivos Excel descargables.",
+    "prioridad": 2,
+    "fechaInicio": "2026-05-18T09:15:00",
+    "fechaFinal": "2026-05-23T14:45:00",
+    "estado": 2
   }
 ]

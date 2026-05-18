@@ -21,12 +21,12 @@ public class CrearTareaHandler implements RequestHandler<CrearTareaRequest, Crea
 
         Tarea tarea = Tarea.builder()
                 .nombre(request.getNombre())
+                .descripcion(request.getDescripcion())
+                .prioridad(request.getPrioridad())
+                .fechaInicio(request.getFechaInicio())
+                .fechaFinal(request.getFechaFinal())
                 .estado(request.getEstado())
                 .build();
-
-        if(!tareaRepositorio.porId(tarea.getId()).isPresent()) {
-            return null;
-        }
 
         Tarea respuesta = tareaRepositorio.upsert(tarea);
 

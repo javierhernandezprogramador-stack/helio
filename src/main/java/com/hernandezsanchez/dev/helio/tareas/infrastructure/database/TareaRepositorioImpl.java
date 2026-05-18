@@ -28,7 +28,6 @@ public class TareaRepositorioImpl implements TareaRepositorio {
 
     private final QueryTareaRepository repository;
 
-    @CachePut(value = "tareas", key = "#tarea.id")
     @Override
     public Tarea upsert(Tarea tarea) {
 

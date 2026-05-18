@@ -22,7 +22,12 @@ public class ModificarTareaHandler implements RequestHandler<ModificarTareaReque
         Tarea tarea = Tarea.builder().
                 id(request.getId())
                 .nombre(request.getNombre())
-                .estado(request.getEstado()).build();
+                .descripcion(request.getDescripcion())
+                .prioridad(request.getPrioridad())
+                .fechaInicio(request.getFechaInicio())
+                .fechaFinal(request.getFechaFinal())
+                .estado(request.getEstado())
+                .build();
 
         Tarea tareaRespuesta = tareaRepositorio.upsert(tarea);
 

@@ -22,11 +22,16 @@ public class TareaSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Resource resource = resourceLoader.getResource("classpath:tareas.json");
 
-        List<TareaEntity> tareas = objectMapper.readValue(resource.getInputStream(), new TypeReference<>() {
-        });
+        long count = queryTareaRepository.count();
 
-        queryTareaRepository.saveAll(tareas);
+        if(count == 0) {
+            Resource resource = resourceLoader.getResource("classpath:tareas.json");
+
+            List<TareaEntity> tareas = objectMapper.readValue(resource.getInputStream(), new TypeReference<>() {
+            });
+
+            queryTareaRepository.saveAll(tareas);
+        }
     }
 }

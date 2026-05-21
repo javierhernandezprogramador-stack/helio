@@ -1,0 +1,47 @@
+[
+  {
+    "nombre": "Diseñar boceto de la interfaz",
+    "descripcion": "Crear el wireframe inicial de la pantalla de inicio para la aprobación del cliente.",
+    "estado": 1,
+    "prioridad": 1,
+    "tareaEntity": {
+      "id": 152
+    }
+  },
+  {
+    "nombre": "Configurar base de datos",
+    "descripcion": "Crear las tablas iniciales y definir las relaciones de la entidad usuario.",
+    "estado": 0,
+    "prioridad": 2,
+    "tareaEntity": {
+      "id": 153
+    }
+  },
+  {
+    "nombre": "Redactar documentación de API",
+    "descripcion": "Escribir los endpoints principales en Swagger para el equipo de frontend.",
+    "estado": 1,
+    "prioridad": 1,
+    "tareaEntity": {
+      "id": 154
+    }
+  },
+  {
+    "nombre": "Pruebas unitarias de login",
+    "descripcion": "Validar los flujos de autenticación exitosa y manejo de errores con contraseñas incorrectas.",
+    "estado": 0,
+    "prioridad": 2,
+    "tareaEntity": {
+      "id": 152
+    }
+  },
+  {
+    "nombre": "Subir cambios a entorno de Staging",
+    "descripcion": "Desplegar la rama main en el servidor de pruebas para el equipo de QA.",
+    "estado": 0,
+    "prioridad": 2,
+    "tareaEntity": {
+        "id": 154
+    }
+  }
+]
